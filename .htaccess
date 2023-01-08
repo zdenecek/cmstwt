@@ -1,0 +1,13 @@
+
+
+
+RewriteEngine On
+RewriteBase /~78002598/cms/
+
+Options -MultiViews
+
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !^.*\.(jpg|css|js|gif|png|ico)$ [NC]
+
+RewriteRule ^([-a-zA-Z0-9_/]+)$ index.php?%{QUERY_STRING}&page=$1 [L]

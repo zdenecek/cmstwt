@@ -1,0 +1,11 @@
+
+<!-- {{ INHERITS:base }} -->
+
+<article class="article-detail">
+    <h1><?= htmlspecialchars($article->name) ?></h1>
+    <div class="content"> <?= htmlspecialchars($article->content)?></div>
+    <div class="buttons">
+        <a  role="button" class="button button-blue" href="<?= url('article-edit/'. $article->id) ?>">Edit</a>
+        <a role="button" class="button" href="<?= url('articles') ?>">Back to articles</a>
+    </div>
+</article>

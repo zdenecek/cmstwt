@@ -1,0 +1,222 @@
+
+* {
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+html {
+    /* CSS HEX  Pallete */
+
+    /* Got this from https://coolors.co/palette/ef476f-ffd166-06d6a0-118ab2-073b4c */
+--red: #ef476fff;
+--orange: #ffd166ff;
+--green: #7AE582;
+--blue: #118ab2ff;
+--dark: #073b4cff;
+}
+
+
+body {
+    background-color: var(--orange);
+}
+
+.container {
+
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+
+    padding: 20px;
+    outline: solid 2px var(--dark);
+
+    max-width: 920px;
+    margin: auto;
+    min-height: calc(100vh - 40px);
+}
+
+h1 {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+h2 {
+    font-size: 1.1rem;
+}
+
+input, textarea {
+    outline: solid 1px var(--dark);
+}
+
+.article-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex: 1;
+}
+
+
+.articles {
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    list-style: none;
+    border-top: 2px solid var(--dark);
+    border-bottom: 2px solid var(--dark) ;
+}
+
+.controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: auto;
+}
+
+.hidden {
+    display: none;
+}
+
+
+.overlay {
+
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    backdrop-filter: blur(4px);
+    z-index: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay.show {
+    visibility: visible;
+}
+
+.modal {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 40px;
+
+    width: 300px;
+
+    background-color: white;
+
+    padding: 20px;
+    outline: solid 2px var(--dark);
+}
+
+.modal .buttons {
+    justify-content: space-between;
+}
+
+.paginator {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.article > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.article-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.control {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.control label {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.article-edit {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.article-edit textarea {
+    resize: none;
+    height: 250px;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.button {
+    color: var(--dark);
+    border: solid 2px  var(--dark);
+    padding: 10px;
+    border-radius: 2px;
+    cursor: pointer;
+    user-select: none;
+    font-size: inherit;
+}
+
+.button[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+a.button {
+    text-decoration: none;
+}
+
+.button.button-red {
+    background-color: var(--red);
+}
+
+.button.button-green {
+    background-color: var(--green);
+}
+
+.button.button-blue {
+    background-color: var(--blue);
+    color: white;
+    font-weight: bold;
+
+}
+
+
+.error {
+    display: flex;
+    justify-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.error-head {
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    color: var(--dark-byzantium);
+}
+
+.error-sub {
+    text-align: center;
+    color: var(--dark-byzantium);
+
+}
+
+.error-img {
+    margin: auto;
+    max-width: 30%;
+}

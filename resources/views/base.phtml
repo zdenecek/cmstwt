@@ -1,0 +1,22 @@
+<?php
+use App\Config;
+?>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <title>CMS to waste time</title>
+
+    <link rel="shortcut icon" href="<?= Config::BASE_URI ?>favicon.ico"/>
+    <base href="<?= Config::BASE_URI ?>" />
+    <link href="<?= Config::BASE_URI ?>resources/css/style.css" rel="stylesheet" />
+</head>
+<body>
+<main class="container">
+    {{ BODY }}
+</main>
+</body>
+</html>

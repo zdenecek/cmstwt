@@ -1,0 +1,1 @@
+scp -r .\program\* 78002598@webik:~/public_html/cms/
