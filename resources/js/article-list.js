@@ -11,6 +11,7 @@ function bootstrap() {
     console.debug("Welcome to CMSTWT: CMS To Waste Time");
     bootstrapCreate();
     bootstrapPagination();
+    bootstrapOrdering();
 }
 
 function bootstrapPagination() {
@@ -20,7 +21,7 @@ function bootstrapPagination() {
         console.debug("Fatal: No articles found");
         return;
     }
-    articles = ids.map((id) => ({ id: parseInt(id), element:  document.getElementById("article-" + id)}));
+    articles = ids.map((a) => ({ id: parseInt(a.id), name: a.name, likes: parseInt(a.likes), element:  document.getElementById("article-" + a.id)}));
 
     counter = document.getElementById("paginator-counter");
     updatePagination();
@@ -101,11 +102,14 @@ function updatePagination() {
     for(let i = (currentPage - 1) * perPage; i < currentPage * perPage; i++) {
         if (articles[i]?.element) {
             articles[i].element.classList.remove("hidden");
+            articles[i].element.style.order = i;
         }
     }
 
     counter.innerText = count;
 }
+
+
 
 function deleteArticle(id) {
     if (confirm("Are you sure you want to delete the article?")) {
@@ -124,3 +128,42 @@ function deleteArticle(id) {
             });
     }
 }
+
+
+
+function bootstrapOrdering() {
+    const buttons = {
+        'id': document.getElementById("order-by-date"),
+        'likes': document.getElementById("order-by-likes"),
+    } 
+
+    let orderBy = '';
+    
+    function updateOrdering(field) {
+
+        if(!buttons[field]) return;
+        if(orderBy == field) return;
+        
+        buttons[orderBy]?.removeAttribute('disabled');
+        orderBy = field;
+        buttons[orderBy].setAttribute('disabled', '');
+
+        articles.sort((a, b) => {
+            if(orderBy == 'id') {
+                return a.id - b.id;
+            } else {
+                return b.likes - a.likes;
+            }
+        });
+        currentPage = 1;
+        updatePagination();
+    }
+
+    updateOrdering('id');
+
+    buttons['likes'].addEventListener("click", e => updateOrdering('likes'));
+    buttons['id'].addEventListener("click", e => updateOrdering('id'));
+
+}
+
+

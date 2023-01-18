@@ -111,7 +111,7 @@ class Response
 
   public function notFound() {
     $this->view(View::Create(Config::PAGE_404));
-
+    $this->code(404);
     return $this;
 
   }

@@ -4,7 +4,7 @@ use App\Config;
 
 include 'db_config.php';
 
-if(Config::CONN_STRING != "")
+if(strlen(Config::CONN_STRING) != 0)
 {
   $connString = Config::CONN_STRING;
 }

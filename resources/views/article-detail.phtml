@@ -1,10 +1,20 @@
 
 <!-- {{ INHERITS:base }} -->
-
-<article class="article-detail">
+<?php script("article-detail.js") ?>
+<article class="article-detail" id="article-detail" data-article="<?php json($article) ?>">
     <h1><?= htmlspecialchars($article->name) ?></h1>
     <div class="content"> <?= htmlspecialchars($article->content)?></div>
+    <div class="likes">
+        This article currently has a like score of <span id="like-score"><?=
+        $article->likes . ($article->likes == 1  || $article->likes == -1 ? " like" : " likes") ?></span>
+    </div>
     <div class="buttons">
+        <button class="button button-green" id="button-like" ><span>Like</span>
+            <img  class="icon" src="<?= image('cat.png') ?>" alt="Like icon">
+        </button>
+        <button class="button button-red" id="button-dislike"><span>Disike</span>
+            <img  class="icon" src="<?= image('dog.png') ?>" alt="Like icon"></button>
+
         <a  role="button" class="button button-blue" href="<?= url('article-edit/'. $article->id) ?>">Edit</a>
         <a role="button" class="button" href="<?= url('articles') ?>">Back to articles</a>
     </div>

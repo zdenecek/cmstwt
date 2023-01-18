@@ -11,6 +11,11 @@
         <textarea name="content" maxlength="1024" ><?= $article->content ?></textarea>
     </div>
 
+    <div class="control">
+        <label>Likes</label>
+        <div ><?= $article->likes . ($article->likes === 1 || $article->likes === -1 ? " like" : " likes") ?></div>
+    </div>
+
     <div class="buttons">
         <button class="button button-green" type="submit" id="submit-button">Save</button>
         <a role="button" class="button button-red" href="articles">Back to articles</a>

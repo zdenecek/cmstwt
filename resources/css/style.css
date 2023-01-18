@@ -55,12 +55,30 @@ input, textarea {
     flex: 1;
 }
 
+.article-list .heading {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.article .header {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.article h2 {
+    padding: 0;
+    margin: 0;
+}
 
 .articles {
     padding: 20px 10px;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 15px;
     list-style: none;
     border-top: 2px solid var(--dark);
     border-bottom: 2px solid var(--dark) ;
@@ -134,6 +152,26 @@ input, textarea {
     gap: 40px;
 }
 
+.button .icon {
+    height: 1.2em;
+    margin:  -5px 0;
+}
+/* 
+#button-dislike .icon {
+    transform: rotate(180deg);
+} */
+
+.button {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+#like-score {
+    color: var(--blue);
+    font-weight: bold;
+}
+
 .control {
     display: flex;
     flex-direction: column;
@@ -182,10 +220,14 @@ a.button {
 
 .button.button-red {
     background-color: var(--red);
+    color: white;
+    font-weight: bold;
 }
 
 .button.button-green {
     background-color: var(--green);
+    color: white;
+    font-weight: bold;
 }
 
 .button.button-blue {

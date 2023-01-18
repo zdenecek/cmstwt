@@ -2,7 +2,7 @@
 
 
 RewriteEngine On
-RewriteBase /
+RewriteBase /~78002598/cms/
 
 Options -MultiViews
 

@@ -12,15 +12,20 @@ return [
   ['article-edit/{id}', "GET",  "showUpdate" . "@" . ArticleController::class],
   ['article-create', "POST",  "create" . "@" . ArticleController::class],
   ['article-edit/{id}', "POST",  "update" . "@" . ArticleController::class],
+  ['article/like/{id}', "POST",  "addLike" . "@" . ArticleController::class],
+  ['article/dislike/{id}', "POST",  "addDislike" . "@" . ArticleController::class],
   ['article/{id}', "DELETE",  "delete" . "@" . ArticleController::class],
-  ['test', "GET",  function ($request, $response) {
-    $response->text("Hello World")->code(200);
-  }],
+  // ['test', "GET",  function ($request, $response) {
+  //   $response->text("Hello World")->code(200);
+  // }],
   ['migrate1', "GET",  function ($request, $response) {
     if(Config::MIGRATE) include 'db/migration1.php';
   }],
   ['migrate2', "GET",  function ($request, $response) {
     if(Config::MIGRATE) include 'db/migration2.php';
+  }],
+  ['props', "GET",  function ($request, $response) {
+    if(Config::MIGRATE) include 'db/props1.php';
   }],
   ['.*', "*",  "notFound" . "@" . ErrorController::class],
 ];

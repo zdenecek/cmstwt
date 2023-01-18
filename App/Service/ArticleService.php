@@ -15,12 +15,12 @@ class ArticleService {
 
   public function getAll(): array {
 
-    $sth = $this->database->prepare("SELECT id, name, content FROM articles");
+    $sth = $this->database->prepare("SELECT id, name, content, likes FROM articles");
     $sth->execute();
 
     $result = $sth->fetchAll();
 
-    $articles = array_map(fn ($res) => new Article($res['id'], $res['name'], $res['content'] ?? ''), $result);
+    $articles = array_map(fn ($res) => new Article($res['id'], $res['name'], $res['content'] ?? '', $res['likes']), $result);
 
     App::debug(json_encode(array_map(fn ($article) => $article->id, $articles)));
 
@@ -29,7 +29,7 @@ class ArticleService {
 
   public function getOne($id): ?Article {
 
-    $sth = $this->database->prepare("SELECT name, content FROM articles WHERE id = :id");
+    $sth = $this->database->prepare("SELECT name, content, likes FROM articles WHERE id = :id");
     $sth->bindValue(':id', $id);
     $sth->execute();
 
@@ -41,7 +41,7 @@ class ArticleService {
       return null;
     }
 
-    return new Article($id, $res['name'], $res['content'] ?? '');
+    return new Article($id, $res['name'], $res['content'] ?? '', $res['likes']);
   }
 
   public function deleteOne($id): bool {
@@ -54,10 +54,11 @@ class ArticleService {
   }
 
   public function updateOne($article) {
-    $sth = $this->database->prepare("UPDATE articles SET name = :name, content = :content WHERE id = :id");
+    $sth = $this->database->prepare("UPDATE articles SET name = :name, content = :content, likes = :likes WHERE id = :id");
     $sth->bindValue(':id', $article->id);
     $sth->bindValue(':name', $article->name);
     $sth->bindValue(':content', $article->content);
+    $sth->bindValue(':likes', $article->likes);
     $sth->execute();
   }
 
@@ -68,7 +69,7 @@ class ArticleService {
 
     $id = $this->database->lastInsertId();
 
-    return new Article($id, $name, '');
+    return new Article($id, $name, '', 0);
   }
 
 

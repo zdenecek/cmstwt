@@ -64,6 +64,33 @@ class ArticleController
         return true;
     }
 
+    public function addLike($request, $response, $id) {
+        $this->updateLikes($response, $id, true);
+        
+    }
+
+    public function addDislike($request, $response, $id) {
+        $this->updateLikes($response, $id, false);
+    }
+
+    private function updateLikes($response,$id, bool $like) {
+        if (!$this->validateId($id)) {
+            return $response->code(400);
+        }
+
+        $article = $this->service->getOne($id);
+
+        if(!$article) {
+            return $response->code(404);
+        }
+
+        $article->likes += $like ? 1 : -1;
+
+        $this->service->updateOne($article);
+
+        return $response->code(200);
+    }
+
 
     public function update($request, $response, $id) {
 
